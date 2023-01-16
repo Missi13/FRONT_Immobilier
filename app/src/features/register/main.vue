@@ -1,15 +1,15 @@
 <template>
-    <div class="container-fluid">
+    <div class="">
         <v-row>
             
             <div class="gauche col-7">
                 <v-row class="bande">
-                    <div class="col-9 bleu"></div>
-                    <div class="col-3 vert"></div>
+                    <v-col class="col-9 bleu"></v-col>
+                    <v-col class="col-3 vert"></v-col>
                 </v-row>
 
                 <div class="container">
-                    <v-row class="justify-content-center">
+                    <v-row class="align-self-center">
                         <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg">
                     </v-row >
 

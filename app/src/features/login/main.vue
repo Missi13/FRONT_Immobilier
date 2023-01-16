@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="align-self-center">
                         <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg" alt="logo">
                     </div >
 
