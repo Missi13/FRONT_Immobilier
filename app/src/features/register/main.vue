@@ -1,142 +1,138 @@
 <template>
-    <div class="">
+    <v-container fluid class="container">
         <v-row>
             
-            <div class="gauche col-7">
-                <v-row class="bande">
-                    <v-col class="col-9 bleu"></v-col>
-                    <v-col class="col-3 vert"></v-col>
+            <v-col cols="7" class="d-flex flex-column gauche">
+                <v-row class="bande"> 
+                    <v-col cols="8" class="bleu"></v-col> 
+                    <v-col cols="4" class="vert"></v-col> 
                 </v-row>
 
-                <div class="container">
-                    <v-row class="align-self-center">
+                <v-row class="d-flex align-start">
+                    <v-col class="d-flex justify-center ma-0"> 
                         <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg">
-                    </v-row >
+                    </v-col > 
+                </v-row>
 
-                    <!-- Incription -->
-                    <div class="inscription">
-                        <h2 class="titre">Inscription</h2>
 
-                        <v-form class="row justify-content-center">
-                            <div class="formGauche col-6">
+                <!--inscription-->
+                <v-row class="inscription flex-column d-flex justify-center pa-5">
+                    
+                        <h2 class="titre">Inscription</h2> 
+                        <v-form v-model="valid">
+                            <v-container class="flex-colomn">
                                 <v-row>
-                                    <div class="col-6">
-                                        <div class="champs">
-                                            <input type="text" maxlength="25" class="form-control"  :class="isLastNameValid()" required v-model="user.lastName">
-                                            <label>Nom</label>
-                                        </div>
-                                    </div>
+                                    <v-col cols="6">
+                                        <v-row>
+                                            <v-col cols="6">
+                                                <v-text-field v-model="user.firstName" :rules="nameRules" :counter="10" label="Prénom" required></v-text-field>
+                                            </v-col>
+                                            <v-col cols="6">
+                                                <v-text-field v-model="user.lastName" :rules="nameRules" :counter="10" label="Nom" required></v-text-field> 
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
 
-                                    <div class="col-6">
-                                        <div class="champs">
-                                            <input type="text" maxlength="25" class="form-control" :class="isFirstNameValid()" required v-model="user.firstName">
-                                            <label>Prénom</label>
-                                        </div>
-                                    </div>
+                                    <v-col cols="6">
+                                        <v-row>
+                                            <v-col cols="12">
+                                                <v-text-field v-model="user.email" :rules="emailRules" label="E-mail" required></v-text-field>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
                                 </v-row>
-
-                                <v-row>
-                                    <div class="col">
-                                        <div class="champs">
-                                            <input type="text" maxlength="25" class="form-control" :class="isPhoneNumberValid()" required v-model="user.phoneNumber">
-                                            <label>Numéro de téléphone</label>
-                                        </div>
-                                    </div>
-                                </v-row>
-
-                                <label class="dateNaissance">Date de naissance :</label>
-
-                                <v-date-picker></v-date-picker>
-
-                                <!-- <div class="row">
-                                    <div class="col-4">
-                                        <div class="champs">
-                                            <input type="number" min=1 max="31" required v-model="date.day">
-                                            <label class="text-center">Jour</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <div class="champs">
-                                            <select placeholder="Mois" required v-model="date.month">
-                                                <option class="text-gray" value="" selected>Mois</option>
-                                                <option value="01">Janvier</option>
-                                                <option value="02">Février</option>
-                                                <option value="03">Mars</option>
-                                                <option value="04">Avril</option>
-                                                <option value="05">Mai</option>
-                                                <option value="06">Juin</option>
-                                                <option value="07">Juillet</option>
-                                                <option value="08">Août</option>
-                                                <option value="09">Septembre</option>
-                                                <option value="10">Octobre</option>
-                                                <option value="11">Novembre</option>
-                                                <option value="12">Décembre</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <div class="champs">
-                                            <input type="number" min=1900 max="2022" required v-model="date.year">
-                                            <label>Année</label>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
-
-                            <div class="formGauche col-6">
-                                <v-row>
-                                    <div class="col">
-                                        <div class="champs">
-                                            <input type="text" maxlength="25" class="form-control" :class="isEmailValid()" required v-model="user.email">
-                                            <label>E-mail</label>
-                                        </div>
-                                    </div>
-                                </v-row>
-
-                                <v-row>
-                                    <div class="col"> 
-                                        <div class="champs">
-                                            <input type="password" maxlength="25" class="form-control" :class="isPasswordValid()" required v-model="user.password">
-                                            <label>Mot de passe</label>
-                                        </div>
-                                    </div>
-                                </v-row>
-
-                                <label class="genre">Genre :</label>
-
-                                <v-row class="text-center justify-content-center pt-2">
-                                    <div class="genres m-auto">
-                                        <input type="radio" class="btn-check" name="inlineRadioOptions" id="homme" value="HOMME" required v-model="user.gender">
-                                        <label class="homme labelGenre form-control" for="homme">Homme</label>
-                                    
-                                        <input type="radio" class="btn-check" name="inlineRadioOptions" id="femme" value="FEMME" required v-model="user.gender">
-                                        <label class="femme labelGenre form-control" for="femme">Femme </label>
-                                    </div>
-                                </v-row>
-
-                            </div>
+                            </v-container>
                         </v-form>
+ 
+                        <!-- <v-row class="d-flex justify-content-center"> 
+                            <v-col cols="6" class="formGauche"> 
+                                <v-form> 
+                                    <v-col clos="6"> 
+                                        <div class="champs"> 
+                                            <input type="text" maxlength="25" class="form-control"  :class="isLastNameValid()" required v-model="user.lastName"> 
+                                            <label>Nom</label> 
+                                        </div> 
+                                    </v-col> 
+ 
+                                    <div class="col-6"> 
+                                        <div class="champs"> 
+                                            <input type="text" maxlength="25" class="form-control" :class="isFirstNameValid()" required v-model="user.firstName"> 
+                                            <label>Prénom</label> 
+                                        </div> 
+                                    </div> 
+                                </v-form> 
+ 
+                                <v-row> 
+                                    <div class="col"> 
+                                        <div class="champs"> 
+                                            <input type="text" maxlength="25" class="form-control" :class="isPhoneNumberValid()" required v-model="user.phoneNumber"> 
+                                            <label>Numéro de téléphone</label> 
+                                        </div> 
+                                    </div> 
+                                </v-row> 
+ 
+                                <label class="dateNaissance">Date de naissance :</label>                                   
+                            </v-col>-->
+ 
+                            <!-- <div class="formGauche col-6"> 
+                                <v-row> 
+                                    <div class="col"> 
+                                        <div class="champs"> 
+                                            <input type="text" maxlength="25" class="form-control" :class="isEmailValid()" required v-model="user.email"> 
+                                            <label>E-mail</label> 
+                                        </div> 
+                                    </div> 
+                                </v-row> 
+ 
+                                <v-row> 
+                                    <div class="col">  
+                                        <div class="champs"> 
+                                            <input type="password" maxlength="25" class="form-control" :class="isPasswordValid()" required v-model="user.password"> 
+                                            <label>Mot de passe</label> 
+                                        </div> 
+                                    </div> 
+                                </v-row> 
+ 
+                                <label class="genre">Genre :</label> 
+ 
+                                <v-row class="text-center justify-content-center pt-2"> 
+                                    <div class="genres m-auto"> 
+                                        <input type="radio" class="btn-check" name="inlineRadioOptions" id="homme" value="HOMME" required v-model="user.gender"> 
+                                        <label class="homme labelGenre form-control" for="homme">Homme</label> 
+                                     
+                                        <input type="radio" class="btn-check" name="inlineRadioOptions" id="femme" value="FEMME" required v-model="user.gender"> 
+                                        <label class="femme labelGenre form-control" for="femme">Femme </label> 
+                                    </div> 
+                                </v-row> 
+ 
+                            </div>
+                        </v-row>  -->
+ 
+                        <v-btn type="button" class="bouttonInscription btn" @click="register()">Créer un Compte</v-btn> 
+                    
+                </v-row>
 
-                        <button type="button" class="bouttonInscription btn" @click="register()">Créer un Compte</button>
-                    </div>
 
+
+                <!-- Connexion --> 
                     <!-- Connexion -->
-                    <div class="connexion">
-                        <p class="question">Vous possédez déja un compte ?</p>
-                        <button @click="$router.push('./login')" type="boutton" class="bouttonConnexion btn">Se connecter</button>
-                    </div>
-                </div>
-            </div>
+                <!-- Connexion --> 
+                <v-row class="d-flex align-end pa-5">
+                    <v-col class="connexion"> 
+                        <p class="question">Vous possédez déja un compte ?</p> 
+                        <v-btn @click="$router.push('./login')" type="boutton" class="bouttonConnexion btn">Se connecter</v-btn> 
+                    </v-col> 
+                </v-row>
+            </v-col>
 
 
 
-            <div class="droite col-5">
+            <v-col cols="5" class="d-flex flex-column droite">
                 <img src="">
-            </div>
+            </v-col>
+
         </v-row>
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -149,7 +145,7 @@ export default{
     name: 'RegisterAccount',
     data(){
         return{
-            due: null,
+            valid: false,
 
             user: {
                 login: "missi",
@@ -162,6 +158,14 @@ export default{
                 gender: "",
                 accountType: "OWNER"
             },
+            nameRules: [
+                v => !!v || 'Name is required',
+                v => v.length <= 25 || 'Name must be less than 25 characters',
+            ],
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+/.test(v) || 'E-mail must be valid',
+            ],
         }
     },
 
@@ -191,20 +195,7 @@ export default{
 
         isPasswordValid() {
             return utils.isPasswordValid(this.user.password)
-        },
-
-        isDayValid(){
-            return utils.isDayValid(this.user.dateOfBirth.day)
-        },
-        
-        isMonthValid(){
-            return utils.isMonthValid(this.user.dateOfBirth.month)
-        },
-
-        isYearValid(){
-            return utils.isYearValid(this.user.dateOfBirth.year)
-        },
-
+        }
     }
 }
 </script>
@@ -233,7 +224,6 @@ export default{
     
     .droite{
         background: #eaf8bf;
-        min-height: 100vh;
     }
 
     .container{
