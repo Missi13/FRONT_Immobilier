@@ -10,7 +10,7 @@
 
                 <div class="container">
                     <v-row class="justify-content-center">
-                        <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg">
+                        <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg" alt="logo">
                     </v-row >
 
                     <!-- Incription -->
@@ -133,7 +133,7 @@
 
 
             <div class="droite col-5">
-                <img src="">
+                <img src="" alt="">
             </div>
         </v-row>
     </div>
@@ -257,6 +257,7 @@ export default{
     .champs{
         position: relative;
         margin-bottom: 30px;
+        color: #335c67;
     }
 
     .formGauche{
@@ -368,11 +369,6 @@ export default{
         font-weight: 800;
         color: #335c67;
     }
-
-    .champs{
-        color: #335c67;
-    }
-
 
     input:checked + .labelGenre{
         background-color: #335c67;

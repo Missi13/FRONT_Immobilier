@@ -6,20 +6,18 @@
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Apropos</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">Connexion</a></li>
-                <li><a href="#">Inscription</a></li>
+                <li><a @click="$router.push('./login')">Connexion</a></li>
+                <li><a @click="$router.push('./register')">Inscription</a></li>
             </ul>
         </nav>
-    </div>    
+    </div>
 </template>
 
-<style>
-    li,a {
-        font-weight: 500;
-        font-size: 16px;
-        color: #eaf8bf;
-        text-decoration: none;
-    }
+<script>
+
+</script>
+    
+<style scoped>
 
     .navbar {
         display: flex;
@@ -27,7 +25,12 @@
         align-items: center;
         padding: 5px 5%;
         background-color: #24252A;
+    }
 
+    li,a {
+        font-weight: 500;
+        font-size: 16px;
+        text-decoration: none;
     }
 
     .logo{
@@ -47,6 +50,7 @@
 
     .nav-links li a {
         transition: all 0.3s ease 0s;
+        color: #eaf8bf;
     }
 
     .nav-links li a:hover {

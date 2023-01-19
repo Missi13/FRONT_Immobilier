@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="gauche col-7">
-                <img src="">
+                <img src="" alt="">
             </div>
             
             <div class="droite col-5">
