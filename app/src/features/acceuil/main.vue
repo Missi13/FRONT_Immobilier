@@ -21,51 +21,82 @@
             </v-parallax>
 
            <div class="label-Services text-h4 mb-4 text-center">
-             <v-label>SERVICES</v-label>
+             <v-label><p>SERVICES</p></v-label>
            </div>
             <div class="cards">
-                <div class="card1">
-                    <v-card class="mx-auto" max-width="344" elevation="8" outlined shaped>
-                        <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px" cover></v-img>
-                        <v-card-title class="justify-center">
-                            Villa
-                        </v-card-title>
+              <v-hover>
+                    <template v-slot:default="{ hover }">
+                        <v-card class="mx-auto" max-width="344" elevation="8" outlined shaped>
+                            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-img>
+                            <v-card-text>
+                                <h2 class="text-h6 text-center" style="color: #000000">
+                                    Villa
+                                </h2>
+                                <p class="text-center">Travel to the best outdoor experience on planet Earth. A vacation you will never forget!</p>
+                            </v-card-text>
+                            <v-fade-transition>
+                                <v-overlay
+                                    v-if="hover"
+                                    absolute
+                                    color="#335c67"
+                                >
+                                    <v-btn>Plus</v-btn>
+                                </v-overlay>
+                            </v-fade-transition>
+                        </v-card>
+                    </template>
+                </v-hover>
 
-                        <v-card-subtitle>
+                              <v-hover>
+                    <template v-slot:default="{ hover }">
+                        <v-card class="mx-auto" max-width="344" elevation="8" outlined shaped>
+                            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-img>
+                            <v-card-text>
+                                <h2 class="text-h6 text-center" style="color: #000000">
+                                    Appartements
+                                </h2>
+                                <p class="text-center">Travel to the best outdoor experience on planet Earth. A vacation you will never forget!</p>
+                            </v-card-text>
+                            <v-fade-transition>
+                                <v-overlay
+                                    v-if="hover"
+                                    absolute
+                                    color="#335c67"
+                                >
+                                    <v-btn>Plus</v-btn>
+                                </v-overlay>
+                            </v-fade-transition>
+                        </v-card>
+                    </template>
+                </v-hover>
 
-                        </v-card-subtitle>
-                    </v-card>
-                </div>
-
-                <div class="card2">
-                    <v-card class="mx-auto" max-width="344" elevation="8" outlined shaped>
-                        <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px" cover></v-img>
-                        <v-card-title class="justify-center">
-                            Appartement
-                        </v-card-title>
-
-                        <v-card-subtitle>
-                        
-                        </v-card-subtitle>
-                    </v-card>
-                </div>
-
-                <div class="card3">
-                    <v-card class="mx-auto" max-width="344" elevation="8" outlined shaped>
-                        <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px" cover></v-img>
-                        <v-card-title class="justify-center">
-                            Studio
-                        </v-card-title>
-
-                        <v-card-subtitle>
-
-                        </v-card-subtitle>
-                    </v-card>
-                </div>
+                              <v-hover>
+                    <template v-slot:default="{ hover }">
+                        <v-card class="mx-auto" max-width="344" elevation="8" outlined shaped>
+                            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-img>
+                            <v-card-text>
+                                <h2 class="text-h6 text-center" style="color: #000000">
+                                    Studio
+                                </h2>
+                                <p class="text-center">Travel to the best outdoor experience on planet Earth. A vacation you will never forget!</p>
+                            </v-card-text>
+                            <v-fade-transition>
+                                <v-overlay
+                                    v-if="hover"
+                                    absolute
+                                    color="#335c67"
+                                >
+                                    <v-btn>Plus</v-btn>
+                                </v-overlay>
+                            </v-fade-transition>
+                        </v-card>
+                    </template>
+                </v-hover>
+                
             </div>
             <div>
                 <div class="label-Services text-h4 mb-4 text-center">
-                    <v-label>À PROPOS</v-label>
+                    <v-label><p>À PROPOS</p></v-label>
                 </div>
                 <div class="text-Apropos">
                     <p class="text-justify">
@@ -79,7 +110,7 @@
             <div>
 
                 <div class="label-Services text-h4 mb-4 text-center">
-                    <v-label>NOTRE FORMIDABLE EQUIPE</v-label>
+                    <v-label><p>NOTRE FORMIDABLE EQUIPE</p></v-label>
                 </div>
 
                 <div class="cardteam">
@@ -119,8 +150,8 @@
 
             <div>
                 <v-parallax dark src="@/assets/contact.jpeg" >
-                    <div class="text-h4 text-center">
-                        <v-label>CONTACTE-NOUS</v-label>
+                    <div class="text-h4 text-center" white>
+                        <v-label><p class="contact-text">CONTACTE-NOUS</p></v-label>
                     </div>
                     <v-row align="center" justify="center">
                             <v-form class="form">
@@ -140,6 +171,7 @@
                                         elevation="7"
                                         rounded
                                         style="align-items: center;"
+                                        dark
                                     >Envoyer</v-btn>
                                 </div>
                             </v-form>
@@ -156,20 +188,19 @@
 </template>
 
 <script>
-import navbar from "@/components/global-components/layout/app-navbar.vue"
-import Footer from "@/components/global-components/layout/app-footer.vue"
-export default {
-    name: 'MonAcceuil',
-     data: () => ({
-        elevations: [6, 12, 18],
-    }),
+    import navbar from "@/components/global-components/layout/app-navbar.vue"
+    import Footer from "@/components/global-components/layout/app-footer.vue"
+    export default {
+        name: 'MonAcceuil',
+        data: () => ({
+            elevations: [6, 12, 18],
+        }),
 
-    components:{
-        navbar,
-        Footer
-    },
-
-}
+        components:{
+            navbar,
+            Footer
+        },
+    }
 </script>
 
 <style scoped>
@@ -179,24 +210,14 @@ export default {
         margin: 0px;
     }
 
-    .label-Services {
-        padding: 10px;
-        color: #FFFFFF;
+    .label-Services p {
+        padding: 20px;
+        color: #000000;
     }
 
     .cards {
         display:flex;
         justify-content: center;
-    }
-
-    .card1 {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .card3 {
-        padding-left: 10px;
-        padding-right: 10px;
     }
 
     .text-Apropos p {
@@ -229,5 +250,10 @@ export default {
         display:flex;
         flex-direction:column;
         align-items: center;
+    }
+
+    .contact-text {
+        color: white;
+        padding: 20px;
     }
 </style>
