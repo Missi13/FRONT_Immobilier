@@ -13,7 +13,7 @@
     </div>    
 </template>
 
-<style>
+<style scoped>
     li,a {
         font-weight: 500;
         font-size: 16px;

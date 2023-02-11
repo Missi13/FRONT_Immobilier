@@ -2,7 +2,7 @@
     <v-container fluid class="container">
         <v-row>
             
-            <v-col cols="7" class="d-flex flex-column gauche">
+             <v-col cols="7" class="d-flex flex-column gauche">
                 <v-row class="bande"> 
                     <v-col cols="8" class="bleu"></v-col> 
                     <v-col cols="4" class="vert"></v-col> 
@@ -18,109 +18,134 @@
                 <!--inscription-->
                 <v-row class="inscription flex-column d-flex justify-center pa-5">
                     
-                        <h2 class="titre">Inscription</h2> 
-                        <v-form v-model="valid">
-                            <v-container class="flex-colomn">
-                                <v-row>
-                                    <v-col cols="6">
-                                        <v-row>
-                                            <v-col cols="6">
-                                                <v-text-field v-model="user.firstName" :rules="nameRules" :counter="10" label="Prénom" required></v-text-field>
-                                            </v-col>
-                                            <v-col cols="6">
-                                                <v-text-field v-model="user.lastName" :rules="nameRules" :counter="10" label="Nom" required></v-text-field> 
-                                            </v-col>
-                                        </v-row>
-                                    </v-col>
+                    <h2 class="titre">Inscription</h2>
+                    <v-form v-model="valid" ref="form" lazy-validation>
+                        <div class="flex-colomn pa-5">
+                            <v-row>
+                                <v-col cols="6">
+                                    <v-row>
+                                        <v-col cols="6">
+                                            <v-text-field
+                                                v-model="user.firstName"
+                                                :rules= "nameRules"
+                                                label="Prénom"
+                                                color="#335c67"
+                                                required>
+                                            </v-text-field>
+                                        </v-col>
+                                        <v-col cols="6">
+                                            <v-text-field
+                                                v-model="user.lastName"
+                                                :rules="nameRules"
+                                                label="Nom"
+                                                color="#335c67"
+                                                required>
+                                            </v-text-field> 
+                                        </v-col>
+                                    </v-row>
 
-                                    <v-col cols="6">
-                                        <v-row>
-                                            <v-col cols="12">
-                                                <v-text-field v-model="user.email" :rules="emailRules" label="E-mail" required></v-text-field>
-                                            </v-col>
-                                        </v-row>
-                                    </v-col>
-                                </v-row>
-                            </v-container>
-                        </v-form>
- 
-                        <!-- <v-row class="d-flex justify-content-center"> 
-                            <v-col cols="6" class="formGauche"> 
-                                <v-form> 
-                                    <v-col clos="6"> 
-                                        <div class="champs"> 
-                                            <input type="text" maxlength="25" class="form-control"  :class="isLastNameValid()" required v-model="user.lastName"> 
-                                            <label>Nom</label> 
-                                        </div> 
-                                    </v-col> 
- 
-                                    <div class="col-6"> 
-                                        <div class="champs"> 
-                                            <input type="text" maxlength="25" class="form-control" :class="isFirstNameValid()" required v-model="user.firstName"> 
-                                            <label>Prénom</label> 
-                                        </div> 
-                                    </div> 
-                                </v-form> 
- 
-                                <v-row> 
-                                    <div class="col"> 
-                                        <div class="champs"> 
-                                            <input type="text" maxlength="25" class="form-control" :class="isPhoneNumberValid()" required v-model="user.phoneNumber"> 
-                                            <label>Numéro de téléphone</label> 
-                                        </div> 
-                                    </div> 
-                                </v-row> 
- 
-                                <label class="dateNaissance">Date de naissance :</label>                                   
-                            </v-col>-->
- 
-                            <!-- <div class="formGauche col-6"> 
-                                <v-row> 
-                                    <div class="col"> 
-                                        <div class="champs"> 
-                                            <input type="text" maxlength="25" class="form-control" :class="isEmailValid()" required v-model="user.email"> 
-                                            <label>E-mail</label> 
-                                        </div> 
-                                    </div> 
-                                </v-row> 
- 
-                                <v-row> 
-                                    <div class="col">  
-                                        <div class="champs"> 
-                                            <input type="password" maxlength="25" class="form-control" :class="isPasswordValid()" required v-model="user.password"> 
-                                            <label>Mot de passe</label> 
-                                        </div> 
-                                    </div> 
-                                </v-row> 
- 
-                                <label class="genre">Genre :</label> 
- 
-                                <v-row class="text-center justify-content-center pt-2"> 
-                                    <div class="genres m-auto"> 
-                                        <input type="radio" class="btn-check" name="inlineRadioOptions" id="homme" value="HOMME" required v-model="user.gender"> 
-                                        <label class="homme labelGenre form-control" for="homme">Homme</label> 
-                                     
-                                        <input type="radio" class="btn-check" name="inlineRadioOptions" id="femme" value="FEMME" required v-model="user.gender"> 
-                                        <label class="femme labelGenre form-control" for="femme">Femme </label> 
-                                    </div> 
-                                </v-row> 
- 
-                            </div>
-                        </v-row>  -->
- 
-                        <v-btn type="button" class="bouttonInscription btn" @click="register()">Créer un Compte</v-btn> 
-                    
-                </v-row>
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                v-model="user.phoneNumber"
+                                                :rules="phoneRules"
+                                                label="Télephone"
+                                                color="#335c67"
+                                                required>
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col>
+                                            <v-menu ref="menu" v-model="menu" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-text-field
+                                                        v-model="user.dateOfBirth"
+                                                        :rules="dateRules"
+                                                        label="Date de naissance"
+                                                        readonly
+                                                        v-bind="attrs"
+                                                        v-on="on"
+                                                        color="#335c67"
+                                                        required>
+                                                    </v-text-field>
+                                                </template>
+                                                <v-date-picker v-model="user.dateOfBirth" :active-picker.sync="activePicker" 
+                                                    :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)" 
+                                                    min="1950-01-01" @change="save">
+                                                </v-date-picker>
+                                            </v-menu>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col>
+                                            <v-label v-model="user.phoneNumber" required>Genre</v-label>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
 
 
+                                
 
-                <!-- Connexion --> 
-                    <!-- Connexion -->
+                                <v-col cols="6">
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                v-model="user.email"
+                                                :rules="emailRules"
+                                                label="E-mail"
+                                                color="#335c67"
+                                                required>
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                v-model="user.password"
+                                                label="Mot de passe"
+                                                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                                                :type="show1 ? 'text' : 'password'"
+                                                :rules="passwordRules"
+                                                color="#335c67"
+                                                required
+                                                @click:append="show1 = !show1">
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                label="Confirmer le mot de passe"
+                                                :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                                                :type="show2 ? 'text' : 'password'"
+                                                :rules="passworConfirmationdRules"
+                                                color="#335c67"
+                                                required
+                                                @click:append="show2 = !show2">
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div>
+                    </v-form>
+ 
+                    <v-btn elevation="6" type="button" class="bouttonInscription" :disabled="!valid" @click="register()">Créer un Compte</v-btn> 
+                   
+                </v-row> 
+
+
+
                 <!-- Connexion --> 
                 <v-row class="d-flex align-end pa-5">
                     <v-col class="connexion"> 
                         <p class="question">Vous possédez déja un compte ?</p> 
-                        <v-btn @click="$router.push('./login')" type="boutton" class="bouttonConnexion btn">Se connecter</v-btn> 
+                        <v-btn elevation="6" @click="$router.push('./login')" type="boutton" class="bouttonConnexion btn">Se connecter</v-btn> 
                     </v-col> 
                 </v-row>
             </v-col>
@@ -138,17 +163,16 @@
 <script>
 
 import axios from 'axios'
-import { utils } from '@/utils'
 
 export default{
 
     name: 'RegisterAccount',
     data(){
         return{
-            valid: false,
+            valid: true,
 
             user: {
-                login: "missi",
+                login: "",
                 firstName: "",
                 lastName: "",
                 phoneNumber: "",
@@ -159,43 +183,58 @@ export default{
                 accountType: "OWNER"
             },
             nameRules: [
-                v => !!v || 'Name is required',
-                v => v.length <= 25 || 'Name must be less than 25 characters',
+                v => !!v || 'Ce champ est requis',
+                v => /^(([a-zA-Z]*))$/.test(v) || 'Champ invalid',
+                v => v.length <= 25 || 'Ce champ ne doit pas dépasser 25 caracrères',
+            ],
+            phoneRules: [
+                v => !!v || 'Ce champ est requis',
+                v => /^((0+([0-9]{9}))|(\+([0-9]{2,3} )+([1-9] )+[0-9]{8}))$/.test(v) || 'Champ invalid',
+                v => v.length <= 25 || 'Ce champ ne doit pas dépasser 25 caracrères',
             ],
             emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+/.test(v) || 'E-mail must be valid',
+                v => !!v || 'Ce champ est requis',
+                v => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/.test(v) || 'E-mail invalid',
             ],
+            passwordRules: [
+                v => !!v || 'Ce champ est requis',
+                v => /^((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$/.test(v) || 'Utilisez au moin une majuscule et une minuscule et un chiffre',
+                v => v.length >= 8 || 'Ce champs doit contenir au moin 8 caractères',
+            ],
+
+            passworConfirmationdRules: [
+                v => v == this.user.password || 'Le mot de passe est erroné'
+            ],
+            dateRules: [
+                v => !!v || 'Ce champ est requis',
+            ],
+
+            activePicker: null,
+            menu: false,
+            show1: false,
+            show2: false
         }
     },
 
     methods: {
         register() {
-            axios
+            if (this.$refs.form.validate()) {
+                axios
                 .post('http://localhost:8080/api/register', this.user)
                 .catch((error)=>{ console.log('registration Error', error) })
                 .then(()=>{ console.log('registration succes'), this.getData })
+            }
         },
-
-        isFirstNameValid() {
-            return utils.isNameValid(this.user.firstName)
-        },
-
-        isLastNameValid() {
-            return utils.isNameValid(this.user.lastName)
-        },
-
-        isEmailValid() {
-            return utils.isEmailValid(this.user.email)
-        },
-
-        isPhoneNumberValid() {
-            return utils.isPhoneNumberValid(this.user.phoneNumber)
-        },
-
-        isPasswordValid() {
-            return utils.isPasswordValid(this.user.password)
+        
+        save (date) {
+            this.$refs.menu.save(date)
         }
+    },
+    
+    watch: {
+        menu (val) {
+            val && setTimeout(() => (this.activePicker = 'YEAR'))
+        },
     }
 }
 </script>
@@ -289,15 +328,16 @@ export default{
 
     .bouttonInscription{
         width: 200px;
-        background: #335c67;
-        color: #fff;
-        font-weight: 400;
+        background: #335c67 !important;
+        color: #fff !important;
+        text-transform: none;
+        font-weight: 500;
         font-size: 18px;
     }
 
     .bouttonInscription:hover{
-        color:#000;
-        background: #eaf8bf;
+        color:#000 !important;
+        background: #eaf8bf !important;
     }
 
     .question{
@@ -306,17 +346,18 @@ export default{
     }
 
     .bouttonConnexion{
-        border: solid #335c67 2px;
+        border: solid #335c67 2px !important;
         width: 150px;
-        background: #eaf8bf;
-        color: #335c67;
-        font-weight: 400;
+        background: #eaf8bf !important;
+        color: #335c67 !important;
+        text-transform: none;
+        font-weight: 500;
         font-size: 18px;
     }
 
     .bouttonConnexion:hover{
-        color:#fff;
-        background: #335c67;
+        color:#fff !important;
+        background: #335c67 !important;
     }
 
     .text-gray{
@@ -331,14 +372,6 @@ export default{
     .form-control:focus {
         border-color: unset;
         box-shadow: none;
-    }
-
-    .is-invalid:focus{
-        border-color: red;
-    }
-
-    .is-invalid{
-        border-color: red;
     }
 
     .genres{
