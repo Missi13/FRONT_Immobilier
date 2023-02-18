@@ -210,6 +210,7 @@ export default{
                 gender: "",
                 accountType: "OWNER"
             },
+
             loginRules: [
                 v => !!v || 'Ce champ est requis',
                 v => /^(([a-zA-Z0-9]*))$/.test(v) || 'Champ invalid',
@@ -255,7 +256,7 @@ export default{
                 axios
                 .post('http://localhost:8080/api/register', this.user)
                 .catch((error)=>{ console.log('registration Error', error) })
-                .then(()=>{ console.log('registration success'), this.getData })
+                .then((response)=>{ console.log('registration success'), response.data })
             }
         },
         
@@ -326,7 +327,7 @@ export default{
     }
 
     .bouttonInscription:hover{
-        color:#000 !important;
+        color:#335c67 !important;
         background: #eaf8bf !important;
     }
 

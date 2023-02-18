@@ -1,62 +1,115 @@
 <template>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="gauche col-7">
+    <v-container fluid class="container">
+        <v-row>
+
+            <v-col cols="7" class="d-flex flex-column gauche">
                 <img src="">
-            </div>
+            </v-col>
             
-            <div class="droite col-5">
-                <div class="bande row">
-                    <div class="col-9 bleu"></div>
-                    <div class="col-3 vert"></div>
-                </div>
+             <v-col cols="5" class="d-flex flex-column droite">
+                <v-row class="bande"> 
+                    <v-col cols="8" class="bleu"></v-col> 
+                    <v-col cols="4" class="vert"></v-col> 
+                </v-row>
 
-                <div class="container">
-                    <div class="align-self-center">
-                        <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg" alt="logo">
-                    </div >
+                <v-row class="d-flex align-start">
+                    <v-col class="d-flex justify-center ma-0"> 
+                        <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg">
+                    </v-col> 
+                </v-row>
 
-                    <!-- Connexion -->
-                    <div class="connexion">
-                        <h2 class="titre">Connexion</h2>
-                        <form class="formulaire">
-                            <div class="inputBox">
-                                <input type="text" name="" required="" maxlength="25">
-                                <label>E-mail</label>
-                            </div>
 
-                            <div class="inputBox">
-                                <input type="password" id="myInput" name="" required="" maxlength="25">
-                                <label>Mot de passe</label>
-                                <p class="mdpOublie">Mot de passe oublié ?</p>
-                            </div>
-                        
-                            <button type="button" class="bouttonConnexion btn">Se connecter</button>
-                        </form>
-                    </div>
+                <!--connexion-->
+                <v-row class="flex-column d-flex justify-center pa-5">
+                    
+                    <h2 class="titre">Connexion</h2>
+                    <v-form v-model="valid" ref="form" lazy-validation>
+                        <div class="flex-colomn pa-5">
+                            <v-row>
+                                <v-col>
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                v-model="user.username"
+                                                :rules="requiredRule"
+                                                label="Login"
+                                                color="#335c67"
+                                                required>
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                v-model="user.password"
+                                                label="Mot de passe"
+                                                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                                                :type="show1 ? 'text' : 'password'"
+                                                :rules="requiredRule"
+                                                color="#335c67"
+                                                required
+                                                @click:append="show1 = !show1">
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
 
-                    <!-- Inscription -->
-                    <div class="inscription">
-                        <p class="question">Vous n'avez pas de compte et vous voulez louer votre maison ?</p>
-                        <button @click="$router.push('./register')" type="boutton" class="bouttonInscription btn">Créer un compte</button>
-                    </div>
-                </div>
-            </div>
+                                </v-col>
+                            </v-row>
+                        </div>
+                    </v-form>
+ 
+                    <v-btn elevation="6" type="button" class="bouttonConnexion" :disabled="!valid" @click="authenticate()">Se connecter</v-btn> 
+                   
+                </v-row> 
 
-        </div>
-    </div>
+
+                <!-- Inscirption --> 
+                <v-row class="d-flex align-end pa-5">
+                    <v-col> 
+                        <p class="question">Vous ne possédez pas encore de compte ?</p> 
+                        <v-btn elevation="6" @click="$router.push('./register')" type="boutton" class="bouttonInscription btn">Créer un Compte</v-btn> 
+                    </v-col> 
+                </v-row>
+            </v-col>
+
+        </v-row>
+    </v-container>
     
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
     name: 'LoginConnexion',
     data(){
         return{
+            valid: true,
 
+            user: {
+                username: "",
+                password: ""
+            },
+
+            requiredRule: [
+                v => !!v || 'Ce champ est requis',
+            ],
+
+            show1: false,
         }
-    }
+    },
+
+    methods: {
+        authenticate() {
+            if (this.$refs.form.validate()) {
+                axios
+                .post('http://localhost:8080/api/authenticate', this.user)
+                .catch((error)=>{ console.log('authenticate Error', error) })
+                .then((response)=>{ console.log('authenticate success', response.data) })
+            }
+        }
+    },
 }   
 
 </script>
@@ -106,62 +159,19 @@ export default {
         color:#335c67;
     }
 
-    .formulaire{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .inputBox{
-        position: relative;
-        margin-bottom: 30px;
-    }
-
-    .inputBox input{
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #000;
-        letter-spacing: 1px;
-        border: none;
-        border-bottom: 1.5px solid #335c67;
-        outline: none;
-        background: transparent;
-    }
-
-    .inputBox label{
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: silver;
-        pointer-events: none;
-        transition: 0.4s;
-    }
-
-    .formulaire .inputBox input:focus ~ label,
-    .formulaire .inputBox input:valid ~ label{
-        top: -21px;
-        font-size: 15px;
-        color: #335c67;
-    }
-
-    .mdpOublie{
-        font-size: 16px;
-        margin-top: 7px;
-    }
-
-    .bouttonConnexion{
-        width: 150px;
-        background: #335c67;
-        color: #fff;
-        font-weight: 400;
+    .bouttonInscription{
+        border: solid #335c67 2px !important;
+        width: 200px;
+        background: #eaf8bf !important;
+        color: #335c67 !important;
+        text-transform: none;
+        font-weight: 500;
         font-size: 18px;
     }
 
-    .bouttonConnexion:hover{
-        color:#000;
-        background: #eaf8bf;
+    .bouttonInscription:hover{
+        color:#fff !important;
+        background: #335c67 !important;
     }
 
     .question{
@@ -169,18 +179,18 @@ export default {
         font-weight: 500;
     }
 
-    .bouttonInscription{
-        border: solid #335c67 2px;
-        width: 200px;
-        background: #eaf8bf;
-        color: #335c67;
-        font-weight: 400;
+    .bouttonConnexion{
+        width: 150px;
+        background: #335c67 !important;
+        color: #fff !important;
+        text-transform: none;
+        font-weight: 500;
         font-size: 18px;
     }
 
-    .bouttonInscription:hover{
-        color:#fff;
-        background: #335c67;
+    .bouttonConnexion:hover{
+        color:#335c67 !important;
+        background: #eaf8bf !important;
     }
 
 </style>
