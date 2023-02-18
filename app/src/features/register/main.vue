@@ -62,7 +62,7 @@
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <v-text-field
                                                         v-model="user.dateOfBirth"
-                                                        :rules="dateRules"
+                                                        :rules="requiredRule"
                                                         label="Date de naissance"
                                                         readonly
                                                         v-bind="attrs"
@@ -81,15 +81,41 @@
 
                                     <v-row>
                                         <v-col>
-                                            <v-label v-model="user.phoneNumber" required>Genre</v-label>
+                                            <v-radio-group color="#335c67" label="Genre" :rules="requiredRule" v-model="user.gender">
+                                                <v-row>
+                                                    <v-col cols="6">
+                                                        <v-radio 
+                                                            label="Homme"
+                                                            color="#335c67"
+                                                            value="HOMME">
+                                                        </v-radio>
+                                                    </v-col>
+                                                    <v-col cols="6">
+                                                        <v-radio
+                                                            label="Femme"
+                                                            color="#335c67"
+                                                            value="FEMME">
+                                                        </v-radio>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-radio-group>
                                         </v-col>
                                     </v-row>
                                 </v-col>
-
-
                                 
 
                                 <v-col cols="6">
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                v-model="user.login"
+                                                :rules="loginRules"
+                                                label="Login"
+                                                color="#335c67"
+                                                required>
+                                            </v-text-field>
+                                        </v-col>
+                                    </v-row>
                                     <v-row>
                                         <v-col>
                                             <v-text-field
@@ -182,6 +208,11 @@ export default{
                 gender: "",
                 accountType: "OWNER"
             },
+            loginRules: [
+                v => !!v || 'Ce champ est requis',
+                v => /^(([a-zA-Z0-9]*))$/.test(v) || 'Champ invalid',
+                v => v.length <= 25 || 'Ce champ ne doit pas dépasser 25 caracrères',
+            ],
             nameRules: [
                 v => !!v || 'Ce champ est requis',
                 v => /^(([a-zA-Z]*))$/.test(v) || 'Champ invalid',
@@ -205,7 +236,7 @@ export default{
             passworConfirmationdRules: [
                 v => v == this.user.password || 'Le mot de passe est erroné'
             ],
-            dateRules: [
+            requiredRule: [
                 v => !!v || 'Ce champ est requis',
             ],
 
@@ -222,7 +253,7 @@ export default{
                 axios
                 .post('http://localhost:8080/api/register', this.user)
                 .catch((error)=>{ console.log('registration Error', error) })
-                .then(()=>{ console.log('registration succes'), this.getData })
+                .then(()=>{ console.log('registration success'), this.getData })
             }
         },
         
