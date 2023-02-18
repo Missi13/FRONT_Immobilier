@@ -85,6 +85,7 @@
                                                 <v-row>
                                                     <v-col cols="6">
                                                         <v-radio 
+                                                            class="homme"
                                                             label="Homme"
                                                             color="#335c67"
                                                             value="HOMME">
@@ -92,6 +93,7 @@
                                                     </v-col>
                                                     <v-col cols="6">
                                                         <v-radio
+                                                            class="femme"
                                                             label="Femme"
                                                             color="#335c67"
                                                             value="FEMME">
@@ -314,49 +316,6 @@ export default{
         color:#335c67;
     }
 
-    .champs{
-        position: relative;
-        margin-bottom: 30px;
-    }
-
-    .formGauche{
-        padding-right: 25px;
-    }
-
-    .formDroite{
-        padding-left: 25px;
-    }
-
-    input, select{
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #000;
-        letter-spacing: 1px;
-        border: none;
-        border-bottom: 1.5px solid #335c67;
-        outline: none;
-        background: transparent;
-    }
-
-    .champs label{
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: silver;
-        pointer-events: none;
-        transition: 0.4s;
-    }
-
-    .champs input:focus ~ label,
-    .champs input:valid ~ label{
-        top: -21px;
-        font-size: 15px;
-        color: #335c67;
-    }
-
     .bouttonInscription{
         width: 200px;
         background: #335c67 !important;
@@ -391,50 +350,21 @@ export default{
         background: #335c67 !important;
     }
 
-    .text-gray{
-        color: gray
-    }
-
-    .form-control{
-        border-radius: 0px;
-        border-color: unset;
-        box-shadow: none;
-    }
-    .form-control:focus {
-        border-color: unset;
-        box-shadow: none;
-    }
-
-    .genres{
-        display: flex;
-        justify-content: space-between;
-    }
-
     .femme, .homme{
         width: 45%;
         font-size: 15px;
         padding: 5px;
         border-radius: 10px;
-        font-weight: bold
+        font-weight: 500;
     }
-
-    .dateNaissance, .genre{
-        font-weight: 800;
-        color: #335c67;
-    }
-
-    .champs{
-        color: #335c67;
-    }
-
 
     input:checked + .labelGenre{
         background-color: #335c67;
         color:#fff;
     }
 
-    input + .labelGenre{
-        color: Gray;
+    input + .hello{
+        color: red;
     }
 
 </style>
