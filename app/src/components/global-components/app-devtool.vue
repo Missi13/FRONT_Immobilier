@@ -18,6 +18,9 @@
                     <v-list-item>
                         <router-link to="/login">connexion</router-link>
                     </v-list-item>
+                      <v-list-item>
+                        <router-link to="/home">homepage</router-link>
+                    </v-list-item>
                 </v-list>
         </v-menu>
     </div>

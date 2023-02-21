@@ -3,7 +3,7 @@
         <v-row>
 
             <v-col cols="7" class="d-flex flex-column gauche">
-                <img src="">
+                <img src="" alt="">
             </v-col>
             
              <v-col cols="5" class="d-flex flex-column droite">
@@ -14,7 +14,7 @@
 
                 <v-row class="d-flex align-start">
                     <v-col class="d-flex justify-center ma-0"> 
-                        <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg">
+                        <img @click="$router.push('./')" class="logo" src="@/assets/logo.svg" alt="">
                     </v-col> 
                 </v-row>
 
