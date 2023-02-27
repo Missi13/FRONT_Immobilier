@@ -2,7 +2,7 @@
   <v-footer dark padless>
     <v-card class="flex" flat tile>
         
-        <v-card-title class="Very dark desaturated cyan">
+        <v-card-title style="background: #335c67;">
             <strong class="subheading">Connectez-vous avec nous sur les réseaux sociaux !</strong>
 
             <v-spacer></v-spacer>
