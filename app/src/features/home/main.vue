@@ -9,12 +9,12 @@
                 <v-row>
                     <v-col cols="3" class="d-flex flex-column gauche">
                         <div>
-                            <v-card class="carte" variant="outlined">
+                            <v-card class="pb-3" variant="outlined">
                                 <v-card-title class="titre">
                                     VOS CRITERES
                                 </v-card-title>
                                 <div>
-                                    <div class="d-flex justify-space-between mb-6 critere">
+                                    <div class="d-flex critere">
                                         <v-card-text>
                                             2 chambres
                                         </v-card-text>
@@ -22,7 +22,7 @@
                                             <v-icon>mdi-close</v-icon>
                                         </a>
                                     </div>
-                                    <div class="d-flex justify-space-between mb-6 critere">
+                                    <div class="d-flex critere">
                                         <v-card-text>
                                             Bni ksila
                                         </v-card-text>
@@ -37,14 +37,14 @@
                             </v-card>                
                         </div>
                         
-                        <div class="btn">
+                        <div class="btn pt-3 pb-3">
                             <v-btn color="error">
                                 RECHERCHER
                             </v-btn>
                         </div>
 
                         <div>
-                            <v-card class="carte" title="Card title" text="..." variant="outlined">
+                            <v-card class="" title="Card title" text="..." variant="outlined">
                                 <v-card-title class="titre">
                                     VOTRE SEJOUR
                                 </v-card-title>
@@ -52,6 +52,7 @@
                                     <v-menu ref="menu" v-model="menu" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
                                         <template v-slot:activator="{ on, attrs }">
                                             <v-text-field
+                                                class="pa-2"
                                                 v-model="user.startDate"
                                                 label="Date d'arrivée"
                                                 solo
@@ -72,6 +73,7 @@
                                     <v-menu ref="menu1" v-model="menu1" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
                                         <template v-slot:activator="{ on, attrs }">
                                             <v-text-field
+                                                class="pa-2"
                                                 v-model="user.endDate"
                                                 label="Date de départ"
                                                 solo
@@ -90,8 +92,9 @@
                                 
                                 <div>
                                     <v-select
+                                        class="pa-2"
                                         :items="items"
-                                        label="Solo field"
+                                        label="Nombre de personne"
                                         solo
                                     ></v-select>
                                 </div>
@@ -99,23 +102,24 @@
                             </v-card>                
                         </div>
 
-                        <div>
+                        <div class="pt-2">
                             <v-card class="carte" variant="outlined">
                                 <v-card-title class="titre">
                                     BUDGET (Par mois)
                                 </v-card-title>
 
-                                <v-slider
-                                    v-model="value"
-                                    label="How many?"
-                                    persistent-hint
-                                    step="100"
-                                    thumb-label="always"
-                                    ticks
-                                ></v-slider>
-                                <v-text-field v-model="value" variant="solo">
-                                    <span>DA</span>
-                                </v-text-field>
+                            <v-responsive
+                                class="mx-auto"
+                                max-width="344"
+                            >
+                                <v-text-field
+                                class="pa-2"
+                                solo
+                                label="How many ?"
+                                model-value="0"
+                                suffix="Dinar Algérien"
+                                ></v-text-field>
+                            </v-responsive>
                                 
                             </v-card>                
                         </div>
@@ -133,7 +137,7 @@
                                 </v-chip-group>
                             </div>
 
-                            <div class="btncarteliste">
+                            <div class="pa-5">
                                 <v-btn>
                                     <v-icon>mdi-format-align-justify</v-icon>
                                     <span class="hidden-sm-and-down">Liste</span>
@@ -147,78 +151,161 @@
 
                         </div>
 
-                        <h4>22 Appartement trouvés</h4>
+                        <h4 class="pb-2">22 Appartement trouvés</h4>
 
-                        <v-row dense>
-                            <v-col
-                            v-for="card in cards"
-                            :key="card.title"
-                            :cols="card.flex"
-                            >
-                            <v-card>
+                        <v-row>
+                            <v-col cols="4">
                                 <v-img
-                                :src="card.src"
-                                class="white--text align-end"
-                                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
                                 height="200px"
-                                >
-                                <v-card-title v-text="card.title"></v-card-title>
-                                </v-img>
+                                width="300px"
+                                class="white--text align-end"
+                                cover
+                                ></v-img>
+                            </v-col>
 
-                                <v-card-actions>
+                            <v-col cols="8">
+                                <v-card-title>
+                                    Appartement meublé 2 chambre
+                                </v-card-title>
+
+                                <v-card-subtitle>
+                                    72m carré | Bni Ksila Béjaia
+                                </v-card-subtitle>
+
                                 <v-spacer></v-spacer>
 
-                                <v-btn icon>
-                                    <v-icon>mdi-heart</v-icon>
-                                </v-btn>
+                                <v-card-text>
+                                    Disponible maintenant    
+                                </v-card-text>
 
-                                <v-btn icon>
-                                    <v-icon>mdi-bookmark</v-icon>
-                                </v-btn>
+                                <v-spacer></v-spacer>
 
-                                <v-btn icon>
-                                    <v-icon>mdi-share-variant</v-icon>
-                                </v-btn>
-                                </v-card-actions>
-                            </v-card>
+                                <v-card-text class="d-flex justify-space-between">
+                                    <h2>A partir de 20000 DA /mois</h2> 
+                                    <div></div>
+                                    <v-btn color="#335c67">
+                                        VOIRE LA FICHE
+                                    </v-btn>
+                                </v-card-text>
                             </v-col>
                         </v-row>
 
-                        <v-row dense>
-                            <v-col
-                            v-for="card in cards"
-                            :key="card.title"
-                            :cols="card.flex"
-                            >
-                            <v-card>
-                                <v-img
-                                :src="card.src"
-                                class="white--text align-end"
-                                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                                height="200px"
-                                >
-                                <v-card-title v-text="card.title"></v-card-title>
-                                </v-img>
 
-                                <v-card-actions>
+                        <v-row>
+                            <v-col cols="4" class="">
+                                <v-img
+                                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                height="200px"
+                                width="300px"
+                                class="white--text align-end ma-0 pa-0"
+                                cover
+                                ></v-img>
+                            </v-col>
+
+                            <v-col cols="8" class="">
+                                <v-card-title>
+                                    Appartement meublé 2 chambre
+                                </v-card-title>
+
+                                <v-card-subtitle>
+                                    72m carré | Bni Ksila Béjaia
+                                </v-card-subtitle>
+
                                 <v-spacer></v-spacer>
 
-                                <v-btn icon>
-                                    <v-icon>mdi-heart</v-icon>
-                                </v-btn>
+                                <v-card-text>
+                                    Disponible maintenant    
+                                </v-card-text>
 
-                                <v-btn icon>
-                                    <v-icon>mdi-bookmark</v-icon>
-                                </v-btn>
+                                <v-spacer></v-spacer>
 
-                                <v-btn icon>
-                                    <v-icon>mdi-share-variant</v-icon>
-                                </v-btn>
-                                </v-card-actions>
-                            </v-card>
+                                <v-card-text class="d-flex justify-space-between">
+                                    <h2>A partir de 20000 DA /mois</h2> 
+                                    <div></div>
+                                    <v-btn color="#335c67">
+                                        VOIRE LA FICHE
+                                    </v-btn>
+                                </v-card-text>
                             </v-col>
                         </v-row>
-                
+
+                        <v-row>
+                            <v-col cols="4" class="">
+                                <v-img
+                                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                height="200px"
+                                width="300px"
+                                class="white--text align-end ma-0 pa-0"
+                                cover
+                                ></v-img>
+                            </v-col>
+
+                            <v-col cols="8" class="">
+                                <v-card-title>
+                                    Appartement meublé 2 chambre
+                                </v-card-title>
+
+                                <v-card-subtitle>
+                                    72m carré | Bni Ksila Béjaia
+                                </v-card-subtitle>
+
+                                <v-spacer></v-spacer>
+
+                                <v-card-text>
+                                    Disponible maintenant    
+                                </v-card-text>
+
+                                <v-spacer></v-spacer>
+
+                                <v-card-text class="d-flex justify-space-between">
+                                    <h2>A partir de 20000 DA /mois</h2> 
+                                    <div></div>
+                                    <v-btn color="#335c67">
+                                        VOIRE LA FICHE
+                                    </v-btn>
+                                </v-card-text>
+                            </v-col>
+                        </v-row>
+
+                        <v-row>
+                            <v-col cols="4" class="">
+                                <v-img
+                                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                                height="200px"
+                                width="300px"
+                                class="white--text align-end ma-0 pa-0"
+                                cover
+                                ></v-img>
+                            </v-col>
+
+                            <v-col cols="8" class="">
+                                <v-card-title>
+                                    Appartement meublé 2 chambre
+                                </v-card-title>
+
+                                <v-card-subtitle>
+                                    72m carré | Bni Ksila Béjaia
+                                </v-card-subtitle>
+
+                                <v-spacer></v-spacer>
+
+                                <v-card-text>
+                                    Disponible maintenant    
+                                </v-card-text>
+
+                                <v-spacer></v-spacer>
+
+                                <v-card-text class="d-flex justify-space-between">
+                                    <h2>A partir de 20000 DA /mois</h2> 
+                                    <div></div>
+                                    <v-btn color="#335c67">
+                                        VOIRE LA FICHE
+                                    </v-btn>
+                                </v-card-text>
+                            </v-col>
+                        </v-row>
+
                     </v-col>
                 </v-row>
             </v-container>
@@ -241,11 +328,6 @@
         data(){
             return{
                 value: 0,
-                cards: [
-                    { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 12 },
-                    { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6 },
-                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6 },
-                ],
                 tags: [
                     'Prix',
                     'Surface',
@@ -271,7 +353,7 @@
         },
         save1 (date) {
             this.$refs.menu1.save(date)
-        }
+        },
     },
     
     watch: {
@@ -299,28 +381,17 @@
     }
     .droite{
         position: relative;
-        
-
     }
     .titre{
         background: #335c67;
-    }
-    .btn{
-        padding-top: 10px;
-        padding-bottom: 10px;
     }
     .btn button{
         width: 100%;
         color: #eaf8bf;
     }
-    .carte{
-        padding-bottom: 10px;
-    }
-    .btncarteliste {
-        padding: 25px;
-    }
     .iconclose {
         padding-right: 10px;
         padding-top: 10px;
     }
+
 </style>
